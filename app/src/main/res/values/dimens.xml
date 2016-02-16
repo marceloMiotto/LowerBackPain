@@ -1,0 +1,14 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+
+    <!--custom button -->
+    <dimen name="button_start_stop_height">72dp</dimen>
+    <dimen name="layout_margin">16dp</dimen>
+    <dimen name="LinesTitleMargin">8dp</dimen>
+    <dimen name="PrimaryElevation">4dp</dimen>
+    <dimen name="SecondaryElevation">8dp</dimen>
+    <dimen name="ThirdElevation">12dp</dimen>
+
+</resources>
