@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Dor na Lombar</string>
+
+    <string name="hello_world" translatable="false">Hello world!</string>
+    <string name="action_settings">Configurações</string>
+
+    <!--custom -->
+    <string name="button_start_stop_label">Iniciar Alarme</string>
+    <string name="cancel">Cancelar</string>
+    <string name="notification_title">Tempo para Intervalo</string>
+    <string name="title_activity_settings" translatable="false">SettingsActivity</string>
+    <string name="alarm_interval">Intervalo do Alarme - Minutos</string>
+    <string name="button_save_label">Salvar</string>
+    <string name="alarm_interval_key_pref" translatable="false">alarm_interval</string>
+    <string name="alarm_interval_default" translatable="false">30</string>
+    <string name="alarm_interval_alarm_interval_pref" translatable="false">inteval_defined</string>
+
+    <string name="settings_activity_title">Configurações</string>
+    <string name="action_cancel">Cancelar Alarme</string>
+    <string name="alarm_canceled">Alarme Cancelado</string>
+    <string name="alarm_interval_saved">Intervalo de Alarme Salvo</string>
+    <string name="alarm_set">Alarme Iniciado</string>
+
+</resources>

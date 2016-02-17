@@ -21,8 +21,8 @@
 
         <Button
             android:layout_width="match_parent"
-            android:layout_height="151dp"
-            android:layout_gravity="center"
+            android:layout_height="73dp"
+            android:layout_gravity="left"
             android:text="@string/button_start_stop_label"
             android:clickable="true"
             android:id="@+id/start_stop_id"
@@ -30,7 +30,8 @@
             android:elevation="@dimen/PrimaryElevation"
             android:background="@android:color/transparent"
             android:textColor="@android:color/white"
-            android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:gravity="left|center"/>
 
     </FrameLayout>
 

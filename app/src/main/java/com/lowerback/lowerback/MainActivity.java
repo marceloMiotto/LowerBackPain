@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         //TODO Set the alarm
         alarm.setAlarm(this);
-        Toast.makeText(MainActivity.this, "Alarm Set", Toast.LENGTH_SHORT).show();
+        Toast.makeText(MainActivity.this,getResources().getText(R.string.alarm_set), Toast.LENGTH_SHORT).show();
 
     }
 
@@ -66,7 +66,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         if (id == R.id.action_cancel){
             alarm.cancelAlarm(this);
-            Toast.makeText(this, "Alarm Canceled.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this,getResources().getText(R.string.alarm_canceled), Toast.LENGTH_SHORT).show();
         }
 
         return super.onOptionsItemSelected(item);

@@ -49,7 +49,7 @@ public class SettingsActivity extends AppCompatActivity {
                 SharedPreferences.Editor editor = sharedPref.edit();
                 editor.putString(getString(R.string.alarm_interval_alarm_interval_pref),  alarmIntervalEditText.getText().toString());
                 editor.commit();
-                Toast.makeText(SettingsActivity.this, "Alarm Interval Saved.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(SettingsActivity.this,getResources().getText(R.string.alarm_interval_saved), Toast.LENGTH_SHORT).show();
             }
         });
 
