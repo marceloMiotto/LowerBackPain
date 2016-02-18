@@ -30,7 +30,7 @@ public class AlarmReceiver extends WakefulBroadcastReceiver {
 
         alarmMgr = (AlarmManager)context.getSystemService(Context.ALARM_SERVICE);
         Intent intent = new Intent(context, AlarmReceiver.class);
-        alarmIntent = PendingIntent.getBroadcast(context, 0, intent, 0);
+        alarmIntent = PendingIntent.getBroadcast(context, 1, intent, PendingIntent.FLAG_UPDATE_CURRENT);
 
          // Wake up the device to fire the alarm in 30 minutes, and every 30 minutes
          // after that.
@@ -47,9 +47,13 @@ public class AlarmReceiver extends WakefulBroadcastReceiver {
 
     public void cancelAlarm(Context context) {
         // If the alarm has been set, cancel it.
-        if (alarmMgr!= null) {
-            alarmMgr.cancel(alarmIntent);
-        }
+        alarmMgr = (AlarmManager)context.getSystemService(Context.ALARM_SERVICE);
+        Intent intent = new Intent(context, AlarmReceiver.class);
+        alarmIntent = PendingIntent.getBroadcast(context,
+                    1, intent,PendingIntent.FLAG_UPDATE_CURRENT);
+        alarmIntent.cancel();
+
+
 
     }
 
