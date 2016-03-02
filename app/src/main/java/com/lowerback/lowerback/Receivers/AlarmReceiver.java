@@ -5,6 +5,7 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.SystemClock;
 import android.support.v4.content.WakefulBroadcastReceiver;
 
 import com.lowerback.lowerback.R;
@@ -40,7 +41,7 @@ public class AlarmReceiver extends WakefulBroadcastReceiver {
                 , context.getString(R.string.alarm_interval_default));
 
         alarmMgr.setInexactRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP,
-                Long.parseLong(alarmIntervalPref) * 60 * 1000,
+                SystemClock.elapsedRealtime() + Long.parseLong(alarmIntervalPref) * 60 * 1000,
                 Long.parseLong(alarmIntervalPref) * 60 * 1000, alarmIntent);
 
     }
