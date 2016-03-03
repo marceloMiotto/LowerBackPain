@@ -3,7 +3,8 @@
     <string name="app_name">Dor na Lombar</string>
     <string name="action_settings">Configurações</string>
     <!--custom -->
-    <string name="button_start_stop_label">Iniciar Alarme</string>
+    <string name="button_start_label">Inicar</string>
+    <string name="button_stop_label">Cancelar</string>
     <string name="cancel">Cancelar</string>
     <string name="notification_title">Tempo para Intervalo</string>
     <string name="alarm_interval">Intervalo do Alarme - Minutos</string>

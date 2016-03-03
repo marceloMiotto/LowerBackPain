@@ -6,12 +6,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
+import android.widget.CompoundButton;
 import android.widget.Toast;
+import android.widget.ToggleButton;
 
 import com.lowerback.lowerback.Receivers.AlarmReceiver;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class MainActivity extends AppCompatActivity {
 
     AlarmReceiver alarm = new AlarmReceiver();
     private Toolbar toolbar;
@@ -33,15 +34,38 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         /*
         ** Added End
          */
+
+//        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fabId);
+//        fab.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                alarm.setAlarm(MainActivity.this);
+//                Toast.makeText(MainActivity.this, getResources().getText(R.string.alarm_set), Toast.LENGTH_SHORT).show();
+//
+//            }
+//        });
+
+        ToggleButton toggle = (ToggleButton) findViewById(R.id.toggleButton);
+        toggle.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    alarm.setAlarm(MainActivity.this);
+                    Toast.makeText(MainActivity.this, getResources().getText(R.string.alarm_set), Toast.LENGTH_SHORT).show();
+
+                } else {
+                    alarm.cancelAlarm(MainActivity.this);
+                    Toast.makeText(MainActivity.this,getResources().getText(R.string.alarm_canceled), Toast.LENGTH_SHORT).show();
+
+                }
+            }
+        });
+
+
     }
 
-    @Override
-    public void onClick(View v) {
-        //TODO Set the alarm
-        alarm.setAlarm(this);
-        Toast.makeText(MainActivity.this,getResources().getText(R.string.alarm_set), Toast.LENGTH_SHORT).show();
 
-    }
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

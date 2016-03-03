@@ -5,7 +5,8 @@
     <string name="action_settings">Settings</string>
 
     <!--custom -->
-    <string name="button_start_stop_label">Start Alarm</string>
+    <string name="button_start_label">Start</string>
+    <string name="button_stop_label">Cancel</string>
     <string name="cancel">Cancel</string>
     <string name="notification_title">Interval Time</string>
     <string name="title_activity_settings" translatable="false">SettingsActivity</string>
