@@ -29,13 +29,40 @@
             android:hint="@string/alarm_interval"
             android:id="@+id/alarm_interval_EditText"/>
 
-        <Button
+
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/button_save_label"
-            android:clickable="true"
-            android:id="@+id/save_id"
-            />
+            android:text="@string/alarm_music"/>
+
+        <Spinner
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/music_spinner"
+            >
+
+        </Spinner>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/button_save_label"
+                android:clickable="true"
+                android:id="@+id/save_id"
+                />
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/button_reset_label"
+                android:clickable="true"
+                android:id="@+id/reset_id"
+                />
+        </LinearLayout>
     </LinearLayout>
 </RelativeLayout>
 

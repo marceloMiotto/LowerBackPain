@@ -29,8 +29,16 @@
             android:textOn="@string/button_stop_label"
             android:backgroundTint="#FF9800"
             android:background="@color/DarkPrimaryColor"
+            android:backgroundTintMode="src_in"
             android:textColor="@android:color/white"
             android:layout_gravity="left|top"/>
+
+        <Switch
+            android:layout_width="wrap_content"
+            android:layout_height="62dp"
+            android:text="@string/button_start_label"
+            android:id="@+id/switch1"
+            android:layout_gravity="center_horizontal|top"/>
 
     </FrameLayout>
 

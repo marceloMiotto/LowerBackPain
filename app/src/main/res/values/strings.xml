@@ -12,9 +12,12 @@
     <string name="title_activity_settings" translatable="false">SettingsActivity</string>
     <string name="alarm_interval">Alarm Interval - Minutes</string>
     <string name="button_save_label">Save</string>
-    <string name="alarm_interval_key_pref" translatable="false">alarm_interval</string>
+    <string name="button_reset_label">Reset</string>
+    <string name="alarm_interval_key_pref" translatable="false">alarm_interval_key</string>
     <string name="alarm_interval_default" translatable="false">30</string>
-    <string name="alarm_interval_alarm_interval_pref" translatable="false">inteval_defined</string>
+    <string name="alarm_music_default_key_pref" translatable="false">alarm_music_key</string>
+    <string name="alarm_interval_alarm_interval_pref" translatable="false">interval_defined</string>
+    <string name="alarm_state_start_stop_pref">alarm_state_start_stop_pref</string>
 
     <string name="settings_activity_title">Settings</string>
     <string name="action_cancel">Cancel Alarm</string>
@@ -22,5 +25,7 @@
     <string name="alarm_set">Alarm Set</string>
     <string name="alarm_canceled">Alarm Canceled</string>
     <string name="alarm_interval_saved">Alarm Interval Saved</string>
+    <string name="default_alarm_values">Reset to default values</string>
+    <string name="alarm_music">Alarm Music</string>
 
 </resources>

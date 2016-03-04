@@ -7,12 +7,18 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
-public class SettingsActivity extends AppCompatActivity {
+public class SettingsActivity extends AppCompatActivity implements View.OnClickListener {
 
-    EditText alarmIntervalEditText;
-    private Toolbar toolbar;
+    EditText mAlarmIntervalEditText;
+    private  Toolbar toolbar;
+    String   mDefaultMusic;
+    Button   mSaveButton;
+    Button   mResetButton;
+    Spinner  mMusicSpinner;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,28 +38,50 @@ public class SettingsActivity extends AppCompatActivity {
         ** Added End
          */
 
-        alarmIntervalEditText = (EditText) findViewById(R.id.alarm_interval_EditText);
-        Button   saveButton                  = (Button)   findViewById(R.id.save_id);
+        mAlarmIntervalEditText = (EditText) findViewById(R.id.alarm_interval_EditText);
+        mSaveButton   = (Button)   findViewById(R.id.save_id);
+        mResetButton  = (Button)   findViewById(R.id.reset_id);
+        mMusicSpinner = (Spinner)  findViewById(R.id.music_spinner);
 
+        mSaveButton.setOnClickListener(this);
+        mResetButton.setOnClickListener(this);
         final SharedPreferences sharedPref = this.getSharedPreferences(
                 this.getString(R.string.alarm_interval_key_pref), this.MODE_PRIVATE);
         String alarmIntervalPref  = sharedPref.getString(this.getString(R.string.alarm_interval_alarm_interval_pref)
                 , this.getString(R.string.alarm_interval_default));
 
-        alarmIntervalEditText.setText(alarmIntervalPref);
-
-        saveButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                SharedPreferences.Editor editor = sharedPref.edit();
-                editor.putString(getString(R.string.alarm_interval_alarm_interval_pref),  alarmIntervalEditText.getText().toString());
-                editor.commit();
-                Toast.makeText(SettingsActivity.this,getResources().getText(R.string.alarm_interval_saved), Toast.LENGTH_SHORT).show();
-            }
-        });
+        mAlarmIntervalEditText.setText(alarmIntervalPref);
 
 
     }
 
+
+    @Override
+    public void onClick(View v) {
+        final SharedPreferences sharedPref = this.getSharedPreferences(
+                this.getString(R.string.alarm_interval_key_pref), this.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPref.edit();
+
+        switch (v.getId()){
+            case R.id.save_id:
+
+                editor.putString(getString(R.string.alarm_interval_alarm_interval_pref),  mAlarmIntervalEditText.getText().toString());
+                editor.commit();
+                Toast.makeText(SettingsActivity.this,getResources().getText(R.string.alarm_interval_saved), Toast.LENGTH_SHORT).show();
+                break;
+
+            case R.id.reset_id:
+                mDefaultMusic = "android.resource://"+ this.getPackageName() + "/" + R.raw.kalimba;
+                editor.putString(getString(R.string.alarm_interval_alarm_interval_pref),getString(R.string.alarm_interval_default));
+                editor.putString(getString(R.string.alarm_music_default_key_pref), mDefaultMusic);
+                editor.commit();
+
+                mAlarmIntervalEditText.setText(getString(R.string.alarm_interval_default));
+                mMusicSpinner.setSelection(1);
+                Toast.makeText(SettingsActivity.this,getResources().getText(R.string.default_alarm_values), Toast.LENGTH_SHORT).show();
+                break;
+
+        }
+
+    }
 }
