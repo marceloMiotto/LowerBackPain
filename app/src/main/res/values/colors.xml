@@ -2,4 +2,5 @@
 <resources>
     <color name="DarkPrimaryColor">#E64A19</color>
     <color name="PrimaryColor">#FF5722</color>
+    <color name="bacground_color_image">#06185A</color>
 </resources>

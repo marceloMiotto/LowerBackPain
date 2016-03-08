@@ -4,6 +4,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -64,7 +65,7 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
 
         switch (v.getId()){
             case R.id.save_id:
-
+                editor.putString(getString(R.string.alarm_music_pref),String.valueOf(mMusicSpinner.getSelectedItem()));
                 editor.putString(getString(R.string.alarm_interval_alarm_interval_pref),  mAlarmIntervalEditText.getText().toString());
                 editor.commit();
                 Toast.makeText(SettingsActivity.this,getResources().getText(R.string.alarm_interval_saved), Toast.LENGTH_SHORT).show();
@@ -72,10 +73,7 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
 
             case R.id.reset_id:
                 mDefaultMusic = "android.resource://"+ this.getPackageName() + "/" + R.raw.kalimba;
-                editor.putString(getString(R.string.alarm_interval_alarm_interval_pref),getString(R.string.alarm_interval_default));
-                editor.putString(getString(R.string.alarm_music_default_key_pref), mDefaultMusic);
-                editor.commit();
-
+                Log.i("Debug","path: "+mDefaultMusic);
                 mAlarmIntervalEditText.setText(getString(R.string.alarm_interval_default));
                 mMusicSpinner.setSelection(1);
                 Toast.makeText(SettingsActivity.this,getResources().getText(R.string.default_alarm_values), Toast.LENGTH_SHORT).show();

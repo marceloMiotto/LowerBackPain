@@ -11,4 +11,7 @@
     <dimen name="SecondaryElevation">8dp</dimen>
     <dimen name="ThirdElevation">12dp</dimen>
 
+    <dimen name="switch_text">35sp</dimen>
+    <dimen name="settings_fields_margin">10dp</dimen>
+
 </resources>

@@ -5,12 +5,11 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.CompoundButton;
+import android.widget.Switch;
 import android.widget.Toast;
-import android.widget.ToggleButton;
 
 import com.lowerback.lowerback.Receivers.AlarmReceiver;
 
@@ -18,6 +17,8 @@ public class MainActivity extends AppCompatActivity {
 
     AlarmReceiver alarm = new AlarmReceiver();
     private Toolbar toolbar;
+    Switch  mSwitch;
+    SharedPreferences.Editor mEditor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,57 +38,38 @@ public class MainActivity extends AppCompatActivity {
         ** Added End
          */
 
-
-        ToggleButton toggle = (ToggleButton) findViewById(R.id.toggleButton);
-        toggle.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-
-            final SharedPreferences sharedPref = MainActivity.this.getSharedPreferences(
+        mSwitch = (Switch) findViewById(R.id.switch1);
+        final SharedPreferences sharedPref = MainActivity.this.getSharedPreferences(
                     MainActivity.this.getString(R.string.alarm_interval_key_pref), MainActivity.this.MODE_PRIVATE);
-            SharedPreferences.Editor editor = sharedPref.edit();
 
+        String alarmStartStop  = sharedPref.getString(this.getString(R.string.alarm_state_start_stop_pref)
+                , this.getString(R.string.button_stop_label));
+
+        if(alarmStartStop.equals(getString(R.string.button_stop_label))){
+            mSwitch.setChecked(false);
+        }else{
+            mSwitch.setChecked(true);
+        }
+
+        mEditor = sharedPref.edit();
+
+        mSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 
-                if (isChecked) {
+                if (isChecked){
                     alarm.setAlarm(MainActivity.this);
-                    Toast.makeText(MainActivity.this, getResources().getText(R.string.alarm_set), Toast.LENGTH_SHORT).show();
-                    editor.putString(getString(R.string.alarm_state_start_stop_pref), getString(R.string.button_start_label));
-                    editor.commit();
-                    Log.i("Debug01", "set to true again");
-
-
-                } else {
+                    Toast.makeText(MainActivity.this,getResources().getText(R.string.alarm_set), Toast.LENGTH_SHORT).show();
+                    mEditor.putString(getString(R.string.alarm_state_start_stop_pref), getString(R.string.button_start_label));
+                    mEditor.commit();
+                }else {
                     alarm.cancelAlarm(MainActivity.this);
-                    Toast.makeText(MainActivity.this,getResources().getText(R.string.alarm_canceled), Toast.LENGTH_SHORT).show();
-                    editor.putString(getString(R.string.alarm_state_start_stop_pref), getString(R.string.button_stop_label));
-                    editor.commit();
-                    Log.i("Debug01", "set to false again");
+                    Toast.makeText(MainActivity.this, getResources().getText(R.string.alarm_canceled), Toast.LENGTH_SHORT).show();
+                    mEditor.putString(getString(R.string.alarm_state_start_stop_pref), getString(R.string.button_stop_label));
+                    mEditor.commit();
                 }
             }
         });
-
-    }
-
-    @Override
-    protected void onResume(){
-        super.onResume();
-        ToggleButton toggle = (ToggleButton) findViewById(R.id.toggleButton);
-
-        final SharedPreferences sharedPref = this.getSharedPreferences(
-                this.getString(R.string.alarm_interval_key_pref), this.MODE_PRIVATE);
-        String alarmButtonState  = sharedPref.getString(this.getString(R.string.alarm_state_start_stop_pref)
-                , this.getString(R.string.button_start_label));
-
-        Log.i("Debug02", "state "+alarmButtonState);
-
-        if(alarmButtonState.equals(this.getString(R.string.button_start_label))){
-            toggle.setChecked(false);
-            Log.i("Debug01","set to true");
-
-        }else{
-           toggle.setChecked(false);
-            Log.i("Debug01", "set to false");
-        }
-
     }
 
     @Override
@@ -109,11 +91,6 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(this,SettingsActivity.class);
             startActivity(intent);
             return true;
-        }
-
-        if (id == R.id.action_cancel){
-            alarm.cancelAlarm(this);
-            Toast.makeText(this,getResources().getText(R.string.alarm_canceled), Toast.LENGTH_SHORT).show();
         }
 
         return super.onOptionsItemSelected(item);

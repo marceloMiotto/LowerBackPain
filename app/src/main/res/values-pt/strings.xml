@@ -17,5 +17,6 @@
     <string name="alarm_set">Alarme Iniciado</string>
     <string name="default_alarm_values">Redefinidos valores iniciais</string>
     <string name="alarm_music">Música do Alarme</string>
+    <string name="alarm_switch_start_stop">Alarme</string>
 
 </resources>
