@@ -8,6 +8,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.CompoundButton;
+import android.widget.ImageView;
 import android.widget.Switch;
 import android.widget.Toast;
 
@@ -19,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
     private Toolbar toolbar;
     Switch  mSwitch;
     SharedPreferences.Editor mEditor;
+    ImageView mImageView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
         /*
         ** Added End
          */
-
+        mImageView = (ImageView) findViewById(R.id.reminder_icon);
         mSwitch = (Switch) findViewById(R.id.switch1);
         final SharedPreferences sharedPref = MainActivity.this.getSharedPreferences(
                     MainActivity.this.getString(R.string.alarm_interval_key_pref), MainActivity.this.MODE_PRIVATE);
@@ -47,8 +49,10 @@ public class MainActivity extends AppCompatActivity {
 
         if(alarmStartStop.equals(getString(R.string.button_stop_label))){
             mSwitch.setChecked(false);
+            mImageView.setImageResource(R.drawable.no_reminder);
         }else{
             mSwitch.setChecked(true);
+            mImageView.setImageResource(R.drawable.reminder);
         }
 
         mEditor = sharedPref.edit();
@@ -59,11 +63,13 @@ public class MainActivity extends AppCompatActivity {
 
                 if (isChecked){
                     alarm.setAlarm(MainActivity.this);
+                    mImageView.setImageResource(R.drawable.reminder);
                     Toast.makeText(MainActivity.this,getResources().getText(R.string.alarm_set), Toast.LENGTH_SHORT).show();
                     mEditor.putString(getString(R.string.alarm_state_start_stop_pref), getString(R.string.button_start_label));
                     mEditor.commit();
                 }else {
                     alarm.cancelAlarm(MainActivity.this);
+                    mImageView.setImageResource(R.drawable.no_reminder);
                     Toast.makeText(MainActivity.this, getResources().getText(R.string.alarm_canceled), Toast.LENGTH_SHORT).show();
                     mEditor.putString(getString(R.string.alarm_state_start_stop_pref), getString(R.string.button_stop_label));
                     mEditor.commit();
