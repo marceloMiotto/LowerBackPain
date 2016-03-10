@@ -29,6 +29,8 @@
             android:layout_height="wrap_content"
             android:hint="@string/alarm_interval"
             android:id="@+id/alarm_interval_EditText"
+            android:digits="0123456789"
+            android:numeric="integer"
             android:layout_marginLeft="@dimen/settings_fields_margin"/>
 
 
