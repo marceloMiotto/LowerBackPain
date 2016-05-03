@@ -51,9 +51,9 @@ public class SchedulingService extends IntentService {
                         .setSmallIcon(R.mipmap.ic_launcher)
                         .setContentTitle(getString(R.string.notification_title))
                         .setContentText(msg)
-                .setAutoCancel(true)
-                .setLargeIcon(BitmapFactory.decodeResource(this.getResources(), R.drawable.notification_icon))
-                .setSound(Uri.parse("android.resource://"
+                        .setAutoCancel(true)
+                        .setLargeIcon(BitmapFactory.decodeResource(this.getResources(), R.drawable.notification_icon))
+                        .setSound(Uri.parse("android.resource://"
                         + this.getPackageName() + "/" + R.raw.kalimba));
         mBuilder.setContentIntent(contentIntent);
         mNotificationManager.notify(NOTIFICATION_ID, mBuilder.build());
